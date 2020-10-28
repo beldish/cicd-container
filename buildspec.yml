@@ -7,11 +7,11 @@ phases:
   build:
     commands:
       - docker build -t youtube:latest .
-      - docker tag youtube:latest 378358292543.dkr.ecr.us-east-1.amazonaws.com/youtube
+      - docker tag youtube:latest 378358292543.dkr.ecr.us-east-1.amazonaws.com/youtube:latest
   post_build:
     commands:
-      - docker push 378358292543.dkr.ecr.us-east-1.amazonaws.com/youtube
-      - printf '[{"name":"MB0001-ECS-Container-01","imageUri":"%s"}]' 
+      - docker push 378358292543.dkr.ecr.us-east-1.amazonaws.com/youtube:latest
+      - printf '[{"name":"MB01-Container","imageUri":"%s"}]' 
         378358292543.dkr.ecr.us-east-1.amazonaws.com/youtube > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
